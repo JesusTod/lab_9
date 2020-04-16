@@ -1,0 +1,40 @@
+import numpy as np
+import timeit
+
+# вихідний масив (вивести на екран для випадку введення вихідних даних з
+# клавіатури);
+
+
+# відсортований масив (для випадку введення вихідних даних з клавіатури один
+# екземпляр відсортованого масиву вивести на екран);
+
+a = np.array(())
+count_i = 0
+count_j = 0
+
+
+def buble_2():
+    global a, count_i, count_j
+    while True:
+        inp = input('Введіть елемент масиву: ')
+        if not inp:
+            break
+        a = np.append(a, inp)
+    print('Вихідний масив', a)
+    flag = True
+    i = 0
+    while flag:
+        flag = False
+        for j in range(len(a) - i - 1):
+            if a[j] > a[j + 1]:
+                a[j], a[j + 1] = a[j + 1], a[j]
+                flag = True
+            count_j += 1
+        count_i += 1
+        i += 1
+    print('Відсортований масив', a)
+    print('Всього дій сортування виконано:', count_j + count_i)
+    print('Швидкодія алгоритму:', timeit.timeit())
+
+
+buble_2()
