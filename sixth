@@ -1,0 +1,102 @@
+import numpy as np
+import random
+import timeit
+
+# показники функції оцінки ефективності методів сортування (вивести на екран).
+
+a_1 = np.array(())
+count_i_1 = 0
+count_j_1 = 0
+
+
+def buble():
+    global a_1, count_i_1, count_j_1
+    for i in range(1000):
+        a_1 = np.append(a_1, random.randint(0, 10))
+    for i in range(1, len(a_1)):
+        for j in range(len(a_1) - 1, i - 1, -1):
+            if a_1[j - 1] > a_1[j]:
+                a_1[j], a_1[j - 1] = a_1[j - 1], a_1[j]
+            count_j_1 += 1
+        count_i_1 += 1
+    print('(Buble 1) Всього дій сортування виконано:', count_j_1 + count_i_1)
+    print('(Buble 1) Швидкодія алгоритму:', timeit.timeit())
+
+
+buble()
+
+a = np.array(())
+count_i = 0
+count_j = 0
+
+
+def buble_2():
+    global a, count_i, count_j
+    for i in range(1000):
+        a = np.append(a, random.randint(0, 10))
+    flag = True
+    i = 0
+    while flag:
+        flag = False
+        for j in range(len(a) - i - 1):
+            if a[j] > a[j + 1]:
+                a[j], a[j + 1] = a[j + 1], a[j]
+                flag = True
+            count_j += 1
+        count_i += 1
+        i += 1
+    print('(Buble 2) Всього дій сортування виконано:', count_j + count_i)
+    print('(Buble 2) Швидкодія алгоритму:', timeit.timeit())
+
+
+buble_2()
+
+
+A = np.array(())
+count_2 = 0
+count_i_2 = 0
+
+
+def selection():
+    global A, count_2, count_i_2
+    for k in range(1000):
+        A = np.append(A, random.randint(0, 10))
+    for l in range(len(A) - 1):
+        min = l
+        for x in range(l + 1, len(A)):
+            if A[x] < A[min]:
+                min = x
+            count_i_2 += 1
+        A[l], A[min] = A[min], A[l]
+        count_2 += 1
+
+    print('(Selection) Всього дій сортування виконано:', count_2 + count_i_2)
+    print('(Selection) Швидкодія алгоритму:', timeit.timeit())
+
+
+selection()
+
+
+M = np.array(())
+count_ins = 0
+count_ins_2 = 0
+
+
+def insertion():
+    global M, count_ins, count_ins_2
+    for k in range(1000):
+        M = np.append(M, random.randint(0, 10))
+    for s in range(1, len(M)):
+        n = s - 1
+        key = M[s]
+        while n >= 0 and M[n] > key:
+            M[n + 1] = M[n]
+            n -= 1
+            count_ins_2 += 1
+        M[n + 1] = key
+        count_ins += 1
+    print('(Insertion) Всього дій сортування виконано:', count_ins + count_ins_2)
+    print('(Insertion) Швидкодія алгоритму:', timeit.timeit())
+
+
+insertion()
