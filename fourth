@@ -1,0 +1,44 @@
+import random
+import numpy as np
+import timeit
+
+# забезпечити програмну можливість вибору введення вихідних даних з клавіатури
+# до 30 вихідних чисел.
+
+a = np.array(())
+count_i = 0
+count_j = 0
+
+
+def buble_2():
+    def func():
+        global a, count_i, count_j
+        for i in range(int(inp)):
+            a = np.append(a, random.randint(0, 9))
+        print(a)
+        flag = True
+        i = 0
+        while flag:
+            flag = False
+            for j in range(len(a) - i - 1):
+                if a[j] > a[j + 1]:
+                    a[j], a[j + 1] = a[j + 1], a[j]
+                    flag = True
+                count_j += 1
+            count_i += 1
+            i += 1
+        print(a)
+        print('Всього дій сортування виконано:', count_j + count_i)
+        print('Швидкодія алгоритму:', timeit.timeit())
+
+    inp = input('Введіть кількість рандомних чисел (до 30), або ж натисніть Enter якщо за замовчуванням (10)')
+    if not inp:
+        inp = 10
+        func()
+    elif int(inp) < 31:
+        func()
+    else:
+        print('Ви ввели завелику кількість данних')
+
+
+buble_2()
